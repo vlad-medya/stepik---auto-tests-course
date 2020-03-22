@@ -87,6 +87,10 @@ message = browser.find_element_by_id("verify_message")		#
 assert "successful" in message.text				#
 
 
+print("Let's count together: {}, then goes {}, and then {}".format("one", "two", "three"))      # .format()
+
+
+
 
 
 
