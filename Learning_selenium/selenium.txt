@@ -1,0 +1,97 @@
+*** Find element by ***
+find_elements_by_css_selector;
+find_elements_by_xpath;
+find_elements_by_name;
+find_elements_by_tag_name;
+find_elements_by_class_name;
+find_elements_by_link_text;
+find_elements_by_partial_link_text.
+
+_______________________________________________________________________________
+*** Find and click ***
+browser.find_element_by_tag_name("select").click()
+browser.find_element_by_css_selector("option:nth-child(2)").click()
+browser.find_element_by_css_selector("[value='1']").click()
+
+from selenium.webdriver.support.ui import Select
+select = Select(browser.find_element_by_tag_name("select"))
+select.select_by_value("1") # ищем элемент с текстом "Python"
+
+
+
+_________________________________________________________________________________
+from selenium.webdriver.common.by import By
+driver.find_elements(By.CSS_SELECTOR, "button.submit")
+
+*** For with send_keys ***
+for element in elements:
+    element.send_keys("М")
+
+*** Find by XPATH ***
+//button[text()="Submit"]
+
+*** Placeholder ***
+//input[@placeholder='Input your last name']
+
+*** Example ***
+    locator = "//label[text()='{0}']/following-sibling::input"
+    browser.find_element_by_xpath(locator.format('First name*')).send_keys('Вот крот')
+
+*** option1 = browser.find_element_by_css_selector("[value='python']") ***
+
+*** Scroll by JS if the element is hidden by other element ***                  #  SCROLL
+button = browser.find_element_by_tag_name("button")                             #
+browser.execute_script("return arguments[0].scrollIntoView(true);", button)     #
+button.click()                                                                  #
+
+
+browser.execute_script("window.scrollBy(0, 100);")                              # SCROLL DOWN 100 PX
+**********
+
+
+import os                                                   # IMPORT FILE FROM YOUR PC
+current_dir = os.path.abspath(os.path.dirname(__file__))    # получаем путь к директории текущего исполняемого файла
+file_path = os.path.join(current_dir, 'file.txt')           # добавляем к этому пути имя файла
+element.send_keys(file_path)                                #
+
+*** Work with alert ***             # ALERT
+prompt = browser.switch_to.alert    # SWITCH TO ALERT
+prompt.send_keys("My answer")       # SET TEXT
+prompt.accept()                     # CLICK - OK
+confirm.dismiss()                   # CLICK - OTMENA
+
+
+*** Work with several windows ***
+browser.switch_to.window(window_name)   #SWITCH TO NEW WINDOW
+new_window = browser.window_handles[1]  # CHOOSE 2 WINDOW
+new_window = browser.window_handles[0]  # CHOOSE 1 WINDOW
+
+
+*** Неявное ожидание ***
+browser.implicitly_wait(5)    # говорим WebDriver искать каждый элемент в течение 5 секунд
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium import webdriver
+browser = webdriver.Chrome()
+browser.get("http://suninjuly.github.io/wait2.html")
+
+
+button = WebDriverWait(browser, 5).until(			# говорим Selenium проверять в течение 5 секунд, пока кнопка не станет кликабельной
+        EC.element_to_be_clickable((By.ID, "verify"))		#	
+    )								#
+button.click()							#
+message = browser.find_element_by_id("verify_message")		#
+								#
+assert "successful" in message.text				#
+
+
+
+
+
+
+
+
+
+
